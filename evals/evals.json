@@ -6,21 +6,44 @@
       "name": "explain-observer-go",
       "prompt": "Explain the Observer pattern in Go. I'm fairly new to Go, keep it practical.",
       "expected_output": "Intent in one sentence, when to use it, minimal structure, ONE idiomatic Go example (channels/interfaces, not a Java translation), common pitfalls, related patterns. Should not paste examples in other languages.",
-      "files": []
+      "files": [],
+      "assertions": [
+        "States the intent of Observer in roughly one sentence near the top",
+        "Contains at least one Go code example in a ```go fence and zero code blocks in other programming languages",
+        "The Go example is idiomatic Go (interfaces and/or channels, struct composition) rather than a literal Java translation (no getters/setters boilerplate, no class-style inheritance emulation)",
+        "Mentions when to use the pattern (concrete use cases)",
+        "Mentions at least one common pitfall (e.g. observers never detached/unsubscribed causing leaks, notification during mutation, goroutine-safety of the subscriber list)",
+        "Mentions at least one related pattern (e.g. Mediator or publish-subscribe)"
+      ]
     },
     {
       "id": 1,
       "name": "strategy-or-state",
       "prompt": "I'm building an order processing module. An order goes from 'new' to 'paid' to 'shipped' to 'delivered', and what the cancel() and update() methods are allowed to do depends on where the order is in that flow. Right now it's a big switch statement. Should I use the Strategy pattern or the State pattern here?",
       "expected_output": "A comparison table followed by a single clear recommendation (State, because behavior changes as a result of internal transitions, not client choice), with reasoning. Not both patterns implemented, not a hedge.",
-      "files": []
+      "files": [],
+      "assertions": [
+        "Contains a comparison table contrasting Strategy and State",
+        "Gives exactly one clear recommendation, and that recommendation is State",
+        "Justifies the choice with the correct discriminator: behavior changes as a result of the object's internal lifecycle transitions, not a client-supplied algorithm choice",
+        "Does not hedge by recommending both or by fully implementing both patterns",
+        "Connects the advice to the user's scenario (order lifecycle, replacing the switch statement)"
+      ]
     },
     {
       "id": 2,
       "name": "review-broken-singleton",
       "prompt": "Is this a correct Singleton? Review it for me.",
-      "expected_output": "A findings table (file:line, finding type, why it matters, fix) that catches at least: (1) the race condition - no lock around instance creation, (2) __init__ re-runs on every Config() call and resets state, (3) the class remains directly constructible so 'singleton' is not enforced. Should label finding types (correctness/robustness/deviation) and not rewrite unrelated logic.",
-      "files": ["evals/fixtures/broken_singleton.py"]
+      "expected_output": "A findings table (file:line, finding type, why it matters, fix) that catches at least: (1) the race condition - no lock around instance creation, (2) __init__ re-runs on every Config() call and resets state. Should label finding types (correctness/robustness/deviation) and not rewrite unrelated logic.",
+      "files": ["evals/fixtures/broken_singleton.py"],
+      "assertions": [
+        "Presents findings as a table with line references into broken_singleton.py",
+        "Catches the correctness bug: __init__ runs again on every Config(...) call and silently resets path/values/loaded on the shared instance",
+        "Catches the thread-safety race: two threads can both see _instance is None in __new__ (file says it is used across worker threads), no lock is taken",
+        "Labels findings with a severity/finding type (correctness / robustness / deviation or equivalent)",
+        "Proposes concrete fixes (e.g. initialization guard or moving init into __new__, double-checked locking / threading.Lock)",
+        "Does not rewrite unrelated logic (load/get behavior) or invent findings unrelated to the singleton mechanics"
+      ]
     }
   ]
 }
