@@ -16,12 +16,19 @@ doesn't match it.
 
 ## [Unreleased]
 
-### Added
-- Plugin + marketplace distribution: `.claude-plugin/marketplace.json` at the
-  repo root lists the `design-patterns` plugin, and `design-patterns/.claude-plugin/plugin.json`
-  makes the existing skill folder installable via
-  `/plugin install design-patterns@mosweed-plugins`. The skill, manual-copy, and
-  zip workflows are unchanged.
+## [1.0.0] — 2026-06-10
+
+First public release.
+
+### Patterns & skill
+- All 23 GoF pattern references (5 creational, 7 structural, 11 behavioral),
+  each with intent, problem, solution, ASCII structure diagram, participants,
+  step-by-step walkthrough, runnable examples in 8 languages, when-to-use,
+  pros & cons, relations, and sources.
+- SKILL.md with output formats per task type, single-implementation review
+  workflow, whole-codebase audit workflow, and a quick selection guide.
+- Grep-based section navigation and a "Pattern file layout" map in SKILL.md,
+  so Claude reads only the needed slice of the 1,000+ line pattern files.
 - `references/pattern-confusions.md`: the 11 classic mix-ups (Strategy vs
   State, the four wrappers, the creational trio, …) with comparison tables and
   a tell-tale question each, so comparison answers no longer require loading
@@ -30,24 +37,21 @@ doesn't match it.
   pattern (lambdas vs Strategy, generators vs Iterator, events vs Observer,
   DI vs Singleton, pattern matching vs Visitor, …) and when the full GoF form
   still earns its keep.
-- `evals/`: three test prompts plus a deliberately broken Singleton fixture
-  for benchmarking the skill against a no-skill baseline.
-- Grep-based section navigation and a "Pattern file layout" map in SKILL.md,
-  so Claude reads only the needed slice of the 1,000+ line pattern files.
-- Validator checks for SKILL.md link rot, mistagged/untagged code fences in
-  language sections, and empty Sources sections.
+
+### Distribution
+- Plugin + marketplace distribution: `.claude-plugin/marketplace.json` at the
+  repo root lists the `design-patterns` plugin, and `design-patterns/.claude-plugin/plugin.json`
+  makes the skill folder installable via
+  `/plugin install design-patterns@mosweed-plugins`. The skill, manual-copy, and
+  zip workflows all use the same `design-patterns/` folder.
+- GitHub Copilot custom agent (`agents/design-patterns.agent.md`).
+
+### Tooling
+- Completeness/consistency validator (`scripts/validate_skill.py`) with checks
+  for missing sections/languages, SKILL.md link rot, mistagged/untagged code
+  fences, and empty Sources sections; CI workflow; pre-commit hook;
+  issue/PR templates.
 - Release workflow: pushing a `v*` tag validates, zips `design-patterns/`,
   and attaches it to a GitHub Release.
-
-## [1.0.0] — 2026-06-10
-
-### Added
-- All 23 GoF pattern references (5 creational, 7 structural, 11 behavioral),
-  each with intent, problem, solution, ASCII structure diagram, participants,
-  step-by-step walkthrough, runnable examples in 8 languages, when-to-use,
-  pros & cons, relations, and sources.
-- SKILL.md with output formats per task type, single-implementation review
-  workflow, whole-codebase audit workflow, and a quick selection guide.
-- Completeness/consistency validator (`scripts/validate_skill.py`), CI
-  workflow, pre-commit hook, issue/PR templates.
-- GitHub Copilot custom agent (`agents/design-patterns.agent.md`).
+- `evals/`: three test prompts plus a deliberately broken Singleton fixture
+  for benchmarking the skill against a no-skill baseline.

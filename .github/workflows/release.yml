@@ -22,7 +22,7 @@ jobs:
         run: python3 design-patterns/scripts/validate_skill.py
       - name: Check tag matches SKILL.md version
         run: |
-          version=$(grep -oP 'version:\s*\K[0-9.]+' design-patterns/SKILL.md)
+          version=$(grep -oP 'version:\s*\K[0-9.]+' design-patterns/SKILL.md | head -1)
           if [ "v$version" != "${{ github.ref_name }}" ]; then
             echo "Tag ${{ github.ref_name }} != SKILL.md version v$version"
             exit 1
