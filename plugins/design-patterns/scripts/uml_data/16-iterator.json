@@ -1,0 +1,49 @@
+{
+  "title": "Iterator",
+  "intent": "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
+  "classes": [
+    {
+      "name": "Iterator",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "hasNext", "params": [], "returns": "bool"},
+        {"vis": "+", "name": "next", "params": [], "returns": "T"}
+      ]
+    },
+    {
+      "name": "ConcreteIterator",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "aggregate", "type": "ConcreteAggregate"},
+        {"vis": "-", "name": "position", "type": "int"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "hasNext", "params": [], "returns": "bool"},
+        {"vis": "+", "name": "next", "params": [], "returns": "T"}
+      ]
+    },
+    {
+      "name": "Aggregate",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "createIterator", "params": [], "returns": "Iterator<T>"}
+      ]
+    },
+    {
+      "name": "ConcreteAggregate",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "items", "type": "List<T>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "createIterator", "params": [], "returns": "Iterator<T>"}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteIterator", "to": "Iterator", "type": "realization"},
+    {"from": "ConcreteAggregate", "to": "Aggregate", "type": "realization"},
+    {"from": "ConcreteAggregate", "to": "ConcreteIterator", "type": "dependency", "label": "creates"},
+    {"from": "ConcreteIterator", "to": "ConcreteAggregate", "type": "association"}
+  ]
+}

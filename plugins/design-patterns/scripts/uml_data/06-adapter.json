@@ -1,0 +1,42 @@
+{
+  "title": "Adapter",
+  "intent": "Convert the interface of a class into another interface clients expect, letting classes work together that otherwise could not because of incompatible interfaces.",
+  "classes": [
+    {
+      "name": "Target",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Adapter",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "adaptee", "type": "Adaptee"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Adaptee",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "specificRequest", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "target", "type": "Target"}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Adapter", "to": "Target", "type": "realization"},
+    {"from": "Adapter", "to": "Adaptee", "type": "aggregation", "label": "adaptee"},
+    {"from": "Client", "to": "Target", "type": "association", "label": "uses"}
+  ]
+}

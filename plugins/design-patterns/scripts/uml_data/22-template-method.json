@@ -1,0 +1,26 @@
+{
+  "title": "Template Method",
+  "intent": "Define the skeleton of an algorithm in a method, deferring some steps to subclasses so they can redefine those steps without changing the algorithm's structure.",
+  "classes": [
+    {
+      "name": "AbstractClass",
+      "kind": "abstract",
+      "methods": [
+        {"vis": "+", "name": "templateMethod", "params": [], "returns": null},
+        {"vis": "#", "name": "primitiveOperation1", "params": [], "returns": null},
+        {"vis": "#", "name": "primitiveOperation2", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteClass",
+      "kind": "class",
+      "methods": [
+        {"vis": "#", "name": "primitiveOperation1", "params": [], "returns": null},
+        {"vis": "#", "name": "primitiveOperation2", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteClass", "to": "AbstractClass", "type": "inheritance"}
+  ]
+}

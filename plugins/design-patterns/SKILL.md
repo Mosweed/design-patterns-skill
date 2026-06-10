@@ -108,7 +108,10 @@ languages). Skip vendored / generated / third-party code.
 
 ### 2. Discover
 Patterns are rarely labelled, so find candidate implementations by their
-structural signals. Grep for these and inspect each hit:
+structural signals. Either run the bundled scanner —
+`python scripts/scan_patterns.py <path> --json` (it greps the signals below and
+reports candidates with file:line) — or Grep for these yourself, then inspect
+each hit:
 
 | Pattern | Signals to grep for |
 |---|---|
@@ -176,6 +179,21 @@ reviewable — not one giant rewrite. After each fix state what changed and why.
 Re-run tests if a test command is available. Touch only what the report listed
 unless you find something new, in which case add it to the report rather than
 silently fixing it.
+
+## Bundled scripts
+
+The plugin ships small helper scripts under `scripts/`. Use them when they help;
+they're deterministic and save you from reinventing the work.
+
+| Script | What it does | Example |
+|---|---|---|
+| `uml.py` | Render a pattern's canonical UML class diagram as Mermaid, PlantUML, or draw.io | `python scripts/uml.py observer`, `… -f drawio`, `… --all` |
+| `scan_patterns.py` | Scan a codebase for pattern signals, report candidates (file:line); `--json` for tooling | `python scripts/scan_patterns.py src/ --json` |
+| `validate_skill.py` | Completeness/consistency check of this skill (for contributors) | `python scripts/validate_skill.py` |
+
+When a user asks for a **diagram** of a pattern or of their code, reach for
+`uml.py` (or the `design-patterns-uml` agent). When auditing a codebase, run
+`scan_patterns.py` to build the candidate list instead of grepping by hand.
 
 ## Pattern → file
 

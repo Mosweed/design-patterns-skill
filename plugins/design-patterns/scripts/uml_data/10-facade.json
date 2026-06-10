@@ -1,0 +1,52 @@
+{
+  "title": "Facade",
+  "intent": "Provide a unified, simplified interface to a set of interfaces in a subsystem, making the subsystem easier to use.",
+  "classes": [
+    {
+      "name": "Facade",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "subsystemA", "type": "SubsystemA"},
+        {"vis": "-", "name": "subsystemB", "type": "SubsystemB"},
+        {"vis": "-", "name": "subsystemC", "type": "SubsystemC"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "SubsystemA",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationA", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "SubsystemB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationB", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "SubsystemC",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationC", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "run", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Client", "to": "Facade", "type": "dependency", "label": "uses"},
+    {"from": "Facade", "to": "SubsystemA", "type": "dependency", "label": "delegates"},
+    {"from": "Facade", "to": "SubsystemB", "type": "dependency", "label": "delegates"},
+    {"from": "Facade", "to": "SubsystemC", "type": "dependency", "label": "delegates"}
+  ]
+}

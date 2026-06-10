@@ -1,0 +1,28 @@
+{
+  "title": "Singleton",
+  "intent": "Ensure a class has only one instance and provide a global point of access to it.",
+  "classes": [
+    {
+      "name": "Singleton",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "instance", "type": "Singleton"}
+      ],
+      "methods": [
+        {"vis": "-", "name": "Singleton", "params": [], "returns": null},
+        {"vis": "+", "name": "getInstance", "params": [], "returns": "Singleton"}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Singleton", "to": "Singleton", "type": "association", "label": "instance"},
+    {"from": "Client", "to": "Singleton", "type": "dependency", "label": "getInstance"}
+  ]
+}

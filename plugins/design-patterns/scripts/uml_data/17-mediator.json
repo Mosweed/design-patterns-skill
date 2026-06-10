@@ -1,0 +1,56 @@
+{
+  "title": "Mediator",
+  "intent": "Define an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly.",
+  "classes": [
+    {
+      "name": "Mediator",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "notify", "params": [{"name": "sender", "type": "Colleague"}, {"name": "event", "type": "String"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteMediator",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "colleague1", "type": "ConcreteColleague1"},
+        {"vis": "-", "name": "colleague2", "type": "ConcreteColleague2"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "notify", "params": [{"name": "sender", "type": "Colleague"}, {"name": "event", "type": "String"}], "returns": null}
+      ]
+    },
+    {
+      "name": "Colleague",
+      "kind": "abstract",
+      "attributes": [
+        {"vis": "#", "name": "mediator", "type": "Mediator"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "setMediator", "params": [{"name": "m", "type": "Mediator"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteColleague1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "doA", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteColleague2",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "doB", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteMediator", "to": "Mediator", "type": "realization"},
+    {"from": "ConcreteColleague1", "to": "Colleague", "type": "inheritance"},
+    {"from": "ConcreteColleague2", "to": "Colleague", "type": "inheritance"},
+    {"from": "Colleague", "to": "Mediator", "type": "aggregation", "label": "mediator"},
+    {"from": "ConcreteMediator", "to": "ConcreteColleague1", "type": "association", "label": "colleague1"},
+    {"from": "ConcreteMediator", "to": "ConcreteColleague2", "type": "association", "label": "colleague2"}
+  ]
+}

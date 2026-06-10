@@ -1,0 +1,57 @@
+{
+  "title": "Decorator",
+  "intent": "Attach additional responsibilities to an object dynamically by wrapping it, keeping the same interface; a flexible alternative to subclassing for extending behavior.",
+  "classes": [
+    {
+      "name": "Component",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteComponent",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Decorator",
+      "kind": "abstract",
+      "attributes": [
+        {"vis": "-", "name": "wrappee", "type": "Component"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "Decorator", "params": [{"name": "c", "type": "Component"}], "returns": null},
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteDecoratorA",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "addedState", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null},
+        {"vis": "+", "name": "addedBehavior", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteDecoratorB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null},
+        {"vis": "+", "name": "extraBehavior", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteComponent", "to": "Component", "type": "realization"},
+    {"from": "Decorator", "to": "Component", "type": "realization"},
+    {"from": "Decorator", "to": "Component", "type": "aggregation", "label": "wrappee"},
+    {"from": "ConcreteDecoratorA", "to": "Decorator", "type": "inheritance"},
+    {"from": "ConcreteDecoratorB", "to": "Decorator", "type": "inheritance"}
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Composite",
+  "intent": "Compose objects into tree structures to represent part-whole hierarchies, letting clients treat individual objects and compositions uniformly.",
+  "classes": [
+    {
+      "name": "Component",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null},
+        {"vis": "+", "name": "add", "params": [{"name": "c", "type": "Component"}], "returns": null},
+        {"vis": "+", "name": "remove", "params": [{"name": "c", "type": "Component"}], "returns": null},
+        {"vis": "+", "name": "getChild", "params": [{"name": "i", "type": "int"}], "returns": "Component"}
+      ]
+    },
+    {
+      "name": "Leaf",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Composite",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "children", "type": "List<Component>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null},
+        {"vis": "+", "name": "add", "params": [{"name": "c", "type": "Component"}], "returns": null},
+        {"vis": "+", "name": "remove", "params": [{"name": "c", "type": "Component"}], "returns": null},
+        {"vis": "+", "name": "getChild", "params": [{"name": "i", "type": "int"}], "returns": "Component"}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class"
+    }
+  ],
+  "relations": [
+    {"from": "Leaf", "to": "Component", "type": "realization"},
+    {"from": "Composite", "to": "Component", "type": "realization"},
+    {"from": "Composite", "to": "Component", "type": "aggregation", "label": "children"},
+    {"from": "Client", "to": "Component", "type": "dependency"}
+  ]
+}

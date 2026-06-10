@@ -1,0 +1,46 @@
+{
+  "title": "Flyweight",
+  "intent": "Use sharing to support large numbers of fine-grained objects efficiently by separating intrinsic (shared) state from extrinsic (context) state.",
+  "classes": [
+    {
+      "name": "Flyweight",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [{"name": "extrinsicState", "type": "State"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteFlyweight",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "intrinsicState", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [{"name": "extrinsicState", "type": "State"}], "returns": null}
+      ]
+    },
+    {
+      "name": "FlyweightFactory",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "pool", "type": "Map<String, Flyweight>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "getFlyweight", "params": [{"name": "key", "type": "String"}], "returns": "Flyweight"}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "extrinsicState", "type": "State"}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteFlyweight", "to": "Flyweight", "type": "realization"},
+    {"from": "FlyweightFactory", "to": "Flyweight", "type": "aggregation", "label": "pool"},
+    {"from": "Client", "to": "FlyweightFactory", "type": "dependency", "label": "getFlyweight"},
+    {"from": "Client", "to": "Flyweight", "type": "association", "label": "shares"}
+  ]
+}

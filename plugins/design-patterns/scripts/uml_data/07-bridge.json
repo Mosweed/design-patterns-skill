@@ -1,0 +1,50 @@
+{
+  "title": "Bridge",
+  "intent": "Decouple an abstraction from its implementation so that the two can vary independently.",
+  "classes": [
+    {
+      "name": "Abstraction",
+      "kind": "abstract",
+      "attributes": [
+        {"vis": "-", "name": "impl", "type": "Implementor"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "operation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "RefinedAbstraction",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "extendedOperation", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Implementor",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operationImpl", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteImplementorA",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationImpl", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteImplementorB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationImpl", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "RefinedAbstraction", "to": "Abstraction", "type": "inheritance"},
+    {"from": "ConcreteImplementorA", "to": "Implementor", "type": "realization"},
+    {"from": "ConcreteImplementorB", "to": "Implementor", "type": "realization"},
+    {"from": "Abstraction", "to": "Implementor", "type": "aggregation", "label": "impl"}
+  ]
+}

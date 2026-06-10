@@ -1,0 +1,71 @@
+{
+  "title": "Abstract Factory",
+  "intent": "Provide an interface for creating families of related or dependent objects without specifying their concrete classes.",
+  "classes": [
+    {
+      "name": "AbstractFactory",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "createProductA", "params": [], "returns": "AbstractProductA"},
+        {"vis": "+", "name": "createProductB", "params": [], "returns": "AbstractProductB"}
+      ]
+    },
+    {
+      "name": "ConcreteFactory1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "createProductA", "params": [], "returns": "AbstractProductA"},
+        {"vis": "+", "name": "createProductB", "params": [], "returns": "AbstractProductB"}
+      ]
+    },
+    {
+      "name": "AbstractProductA",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operationA", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "AbstractProductB",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "operationB", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ProductA1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationA", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ProductB1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "operationB", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "factory", "type": "AbstractFactory"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "Client", "params": [{"name": "factory", "type": "AbstractFactory"}], "returns": null},
+        {"vis": "+", "name": "doSomething", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteFactory1", "to": "AbstractFactory", "type": "realization"},
+    {"from": "ProductA1", "to": "AbstractProductA", "type": "realization"},
+    {"from": "ProductB1", "to": "AbstractProductB", "type": "realization"},
+    {"from": "ConcreteFactory1", "to": "ProductA1", "type": "dependency", "label": "creates"},
+    {"from": "ConcreteFactory1", "to": "ProductB1", "type": "dependency", "label": "creates"},
+    {"from": "Client", "to": "AbstractFactory", "type": "aggregation", "label": "factory"},
+    {"from": "Client", "to": "AbstractProductA", "type": "dependency", "label": "uses"},
+    {"from": "Client", "to": "AbstractProductB", "type": "dependency", "label": "uses"}
+  ]
+}

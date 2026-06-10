@@ -1,0 +1,43 @@
+{
+  "title": "State",
+  "intent": "Allow an object to alter its behavior when its internal state changes, so the object appears to change its class.",
+  "classes": [
+    {
+      "name": "Context",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "state", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null},
+        {"vis": "+", "name": "setState", "params": [{"name": "s", "type": "State"}], "returns": null}
+      ]
+    },
+    {
+      "name": "State",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "handle", "params": [{"name": "ctx", "type": "Context"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteStateA",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "handle", "params": [{"name": "ctx", "type": "Context"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteStateB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "handle", "params": [{"name": "ctx", "type": "Context"}], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Context", "to": "State", "type": "aggregation", "label": "state"},
+    {"from": "ConcreteStateA", "to": "State", "type": "realization"},
+    {"from": "ConcreteStateB", "to": "State", "type": "realization"}
+  ]
+}

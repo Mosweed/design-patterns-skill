@@ -1,0 +1,58 @@
+{
+  "title": "Command",
+  "intent": "Encapsulate a request as an object, letting you parameterize clients with different requests, queue or log requests, and support undoable operations.",
+  "classes": [
+    {
+      "name": "Command",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "execute", "params": [], "returns": null},
+        {"vis": "+", "name": "undo", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteCommand",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "receiver", "type": "Receiver"},
+        {"vis": "-", "name": "state", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "execute", "params": [], "returns": null},
+        {"vis": "+", "name": "undo", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Receiver",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "action", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Invoker",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "command", "type": "Command"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "setCommand", "params": [{"name": "c", "type": "Command"}], "returns": null},
+        {"vis": "+", "name": "executeAction", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "configure", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteCommand", "to": "Command", "type": "realization"},
+    {"from": "ConcreteCommand", "to": "Receiver", "type": "association", "label": "receiver"},
+    {"from": "Invoker", "to": "Command", "type": "aggregation", "label": "command"},
+    {"from": "Client", "to": "ConcreteCommand", "type": "dependency", "label": "creates"},
+    {"from": "Client", "to": "Receiver", "type": "dependency", "label": "creates"}
+  ]
+}

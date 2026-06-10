@@ -1,0 +1,41 @@
+{
+  "title": "Factory Method",
+  "intent": "Define an interface for creating an object, but let subclasses decide which class to instantiate, deferring instantiation to subclasses.",
+  "classes": [
+    {
+      "name": "Creator",
+      "kind": "abstract",
+      "methods": [
+        {"vis": "+", "name": "someOperation", "params": [], "returns": null},
+        {"vis": "+", "name": "createProduct", "params": [], "returns": "Product"}
+      ]
+    },
+    {
+      "name": "ConcreteCreator",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "createProduct", "params": [], "returns": "Product"}
+      ]
+    },
+    {
+      "name": "Product",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "doStuff", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteProduct",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "doStuff", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteCreator", "to": "Creator", "type": "inheritance"},
+    {"from": "ConcreteProduct", "to": "Product", "type": "realization"},
+    {"from": "Creator", "to": "Product", "type": "dependency", "label": "creates"},
+    {"from": "ConcreteCreator", "to": "ConcreteProduct", "type": "dependency", "label": "instantiates"}
+  ]
+}

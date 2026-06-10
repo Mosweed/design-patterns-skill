@@ -16,6 +16,20 @@ tag that doesn't match it.
 
 ## [Unreleased]
 
+### Added
+- Three Claude Code subagents shipped with the plugin: `design-patterns`
+  (mentor — explain / choose / review / audit), `design-patterns-uml` (UML
+  diagrams for a pattern or a codebase), and `design-patterns-refactorer`
+  (applies a pattern refactor, with write access and a test-first workflow).
+- `scripts/uml.py` + `scripts/uml_data/` — a UML builder that renders each of
+  the 23 patterns' canonical class diagram as Mermaid, PlantUML, or an editable
+  draw.io (`.drawio`) file (`uml.py <slug> -f drawio`, `--all`, `--list`).
+- `scripts/scan_patterns.py` — scans a codebase for pattern signals and reports
+  candidate implementations with file:line (`--json` for tooling); the audit
+  workflow and the UML agent use it.
+- SKILL.md "Bundled scripts" section wiring the scanner and UML builder into the
+  audit and diagram workflows.
+
 ### Changed
 - Repo layout: the plugin now lives at `plugins/design-patterns/` (was
   `design-patterns/` at the repo root), following the standard marketplace

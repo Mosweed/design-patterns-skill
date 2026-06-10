@@ -1,0 +1,44 @@
+{
+  "title": "Chain of Responsibility",
+  "intent": "Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request; chain the receivers and pass the request along until one handles it.",
+  "classes": [
+    {
+      "name": "Handler",
+      "kind": "abstract",
+      "attributes": [
+        {"vis": "#", "name": "successor", "type": "Handler"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "setSuccessor", "params": [{"name": "successor", "type": "Handler"}], "returns": null},
+        {"vis": "+", "name": "handleRequest", "params": [{"name": "request", "type": "Request"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteHandler1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "handleRequest", "params": [{"name": "request", "type": "Request"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteHandler2",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "handleRequest", "params": [{"name": "request", "type": "Request"}], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "main", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteHandler1", "to": "Handler", "type": "inheritance"},
+    {"from": "ConcreteHandler2", "to": "Handler", "type": "inheritance"},
+    {"from": "Handler", "to": "Handler", "type": "aggregation", "label": "successor"},
+    {"from": "Client", "to": "Handler", "type": "association", "label": "sends request"}
+  ]
+}

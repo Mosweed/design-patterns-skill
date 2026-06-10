@@ -1,0 +1,44 @@
+{
+  "title": "Memento",
+  "intent": "Capture and externalize an object's internal state without violating encapsulation, so the object can be restored to this state later.",
+  "classes": [
+    {
+      "name": "Originator",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "state", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "createMemento", "params": [], "returns": "Memento"},
+        {"vis": "+", "name": "restore", "params": [{"name": "m", "type": "Memento"}], "returns": null}
+      ]
+    },
+    {
+      "name": "Memento",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "state", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "getState", "params": [], "returns": "State"},
+        {"vis": "+", "name": "setState", "params": [{"name": "s", "type": "State"}], "returns": null}
+      ]
+    },
+    {
+      "name": "Caretaker",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "history", "type": "List<Memento>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "save", "params": [], "returns": null},
+        {"vis": "+", "name": "undo", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Originator", "to": "Memento", "type": "dependency", "label": "creates"},
+    {"from": "Caretaker", "to": "Memento", "type": "aggregation", "label": "history"},
+    {"from": "Caretaker", "to": "Originator", "type": "association", "label": "uses"}
+  ]
+}

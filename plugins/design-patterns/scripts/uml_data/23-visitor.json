@@ -1,0 +1,61 @@
+{
+  "title": "Visitor",
+  "intent": "Represent an operation to be performed on the elements of an object structure, letting you define a new operation without changing the classes of the elements on which it operates.",
+  "classes": [
+    {
+      "name": "Visitor",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "visitConcreteElementA", "params": [{"name": "e", "type": "ConcreteElementA"}], "returns": null},
+        {"vis": "+", "name": "visitConcreteElementB", "params": [{"name": "e", "type": "ConcreteElementB"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteVisitor1",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "visitConcreteElementA", "params": [{"name": "e", "type": "ConcreteElementA"}], "returns": null},
+        {"vis": "+", "name": "visitConcreteElementB", "params": [{"name": "e", "type": "ConcreteElementB"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteVisitor2",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "visitConcreteElementA", "params": [{"name": "e", "type": "ConcreteElementA"}], "returns": null},
+        {"vis": "+", "name": "visitConcreteElementB", "params": [{"name": "e", "type": "ConcreteElementB"}], "returns": null}
+      ]
+    },
+    {
+      "name": "Element",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "accept", "params": [{"name": "visitor", "type": "Visitor"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteElementA",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "accept", "params": [{"name": "visitor", "type": "Visitor"}], "returns": null},
+        {"vis": "+", "name": "operationA", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteElementB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "accept", "params": [{"name": "visitor", "type": "Visitor"}], "returns": null},
+        {"vis": "+", "name": "operationB", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteVisitor1", "to": "Visitor", "type": "realization"},
+    {"from": "ConcreteVisitor2", "to": "Visitor", "type": "realization"},
+    {"from": "ConcreteElementA", "to": "Element", "type": "realization"},
+    {"from": "ConcreteElementB", "to": "Element", "type": "realization"},
+    {"from": "ConcreteElementA", "to": "Visitor", "type": "dependency", "label": "accept calls visit"},
+    {"from": "ConcreteElementB", "to": "Visitor", "type": "dependency", "label": "accept calls visit"}
+  ]
+}

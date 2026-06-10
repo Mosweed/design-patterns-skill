@@ -1,0 +1,40 @@
+{
+  "title": "Proxy",
+  "intent": "Provide a surrogate or placeholder for another object to control access to it, sharing the same interface as the real object.",
+  "classes": [
+    {
+      "name": "Subject",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "RealSubject",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Proxy",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "realSubject", "type": "RealSubject"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "request", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class"
+    }
+  ],
+  "relations": [
+    {"from": "RealSubject", "to": "Subject", "type": "realization"},
+    {"from": "Proxy", "to": "Subject", "type": "realization"},
+    {"from": "Proxy", "to": "RealSubject", "type": "aggregation", "label": "realSubject"},
+    {"from": "Client", "to": "Subject", "type": "association", "label": "uses"}
+  ]
+}

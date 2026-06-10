@@ -1,0 +1,54 @@
+{
+  "title": "Interpreter",
+  "intent": "Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.",
+  "classes": [
+    {
+      "name": "AbstractExpression",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "interpret", "params": [{"name": "context", "type": "Context"}], "returns": "Object"}
+      ]
+    },
+    {
+      "name": "TerminalExpression",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "interpret", "params": [{"name": "context", "type": "Context"}], "returns": "Object"}
+      ]
+    },
+    {
+      "name": "NonterminalExpression",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "children", "type": "List<AbstractExpression>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "interpret", "params": [{"name": "context", "type": "Context"}], "returns": "Object"}
+      ]
+    },
+    {
+      "name": "Context",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "bindings", "type": "Map<String, Object>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "get", "params": [{"name": "name", "type": "String"}], "returns": "Object"}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "build", "params": [], "returns": "AbstractExpression"}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "TerminalExpression", "to": "AbstractExpression", "type": "realization"},
+    {"from": "NonterminalExpression", "to": "AbstractExpression", "type": "realization"},
+    {"from": "NonterminalExpression", "to": "AbstractExpression", "type": "aggregation", "label": "children"},
+    {"from": "Client", "to": "AbstractExpression", "type": "dependency", "label": "builds"},
+    {"from": "Client", "to": "Context", "type": "dependency", "label": "builds"}
+  ]
+}

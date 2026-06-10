@@ -1,0 +1,52 @@
+{
+  "title": "Observer",
+  "intent": "Define a one-to-many dependency so that when one object changes state, all its dependents are notified and updated automatically.",
+  "classes": [
+    {
+      "name": "Subject",
+      "kind": "abstract",
+      "attributes": [
+        {"vis": "-", "name": "observers", "type": "List<Observer>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "attach", "params": [{"name": "o", "type": "Observer"}], "returns": null},
+        {"vis": "+", "name": "detach", "params": [{"name": "o", "type": "Observer"}], "returns": null},
+        {"vis": "+", "name": "notify", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Observer",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "update", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteSubject",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "state", "type": "State"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "getState", "params": [], "returns": "State"},
+        {"vis": "+", "name": "setState", "params": [{"name": "s", "type": "State"}], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteObserver",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "subject", "type": "ConcreteSubject"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "update", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteSubject", "to": "Subject", "type": "inheritance"},
+    {"from": "ConcreteObserver", "to": "Observer", "type": "realization"},
+    {"from": "Subject", "to": "Observer", "type": "aggregation", "label": "observers"},
+    {"from": "ConcreteObserver", "to": "ConcreteSubject", "type": "association", "label": "observes"}
+  ]
+}

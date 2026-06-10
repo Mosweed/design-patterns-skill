@@ -19,6 +19,12 @@ only when needed instead of dumped into every conversation.
   real mistakes, so you don't get false alarms.
 - **Whole-codebase audits**: Claude finds candidate pattern implementations,
   reports problems in a table, and fixes them only after you approve.
+- **UML diagrams**: generate a pattern's class diagram (or a diagram of the
+  patterns in your own code) as Mermaid, PlantUML, or an editable **draw.io**
+  file.
+- **Three subagents** shipped with the plugin: a *mentor* (explain / choose /
+  review / audit), a *UML* agent (diagrams), and a *refactorer* that applies a
+  pattern refactor to your code — plus a `scan_patterns.py` codebase scanner.
 
 ## Install
 
@@ -105,6 +111,13 @@ plugins/
     references/             # one file per pattern, grouped by category
     scripts/
       validate_skill.py     # completeness & consistency checker
+      uml.py                # UML builder: Mermaid / PlantUML / draw.io per pattern
+      uml_data/             # canonical structure of each of the 23 patterns (JSON)
+      scan_patterns.py      # scan a codebase for pattern signals (file:line, --json)
+    agents/                 # Claude Code subagents shipped with the plugin
+      design-patterns.md            # mentor: explain / choose / review / audit
+      design-patterns-uml.md        # UML diagrams for a pattern or a codebase
+      design-patterns-refactorer.md # applies a pattern refactor (write access)
 agents/
   design-patterns.agent.md  # GitHub Copilot custom agent (same workflow)
 evals/                      # benchmark prompts + fixtures (not shipped in the plugin)

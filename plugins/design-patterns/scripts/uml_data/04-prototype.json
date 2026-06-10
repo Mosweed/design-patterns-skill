@@ -1,0 +1,60 @@
+{
+  "title": "Prototype",
+  "intent": "Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.",
+  "classes": [
+    {
+      "name": "Prototype",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "clone", "params": [], "returns": "Prototype"}
+      ]
+    },
+    {
+      "name": "ConcretePrototype1",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "field1", "type": "String"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "clone", "params": [], "returns": "Prototype"},
+        {"vis": "+", "name": "getField1", "params": [], "returns": "String"}
+      ]
+    },
+    {
+      "name": "ConcretePrototype2",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "field2", "type": "int"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "clone", "params": [], "returns": "Prototype"},
+        {"vis": "+", "name": "getField2", "params": [], "returns": "int"}
+      ]
+    },
+    {
+      "name": "PrototypeRegistry",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "items", "type": "Map<String, Prototype>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "addItem", "params": [{"name": "id", "type": "String"}, {"name": "proto", "type": "Prototype"}], "returns": null},
+        {"vis": "+", "name": "getById", "params": [{"name": "id", "type": "String"}], "returns": "Prototype"}
+      ]
+    },
+    {
+      "name": "Client",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "businessLogic", "params": [], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcretePrototype1", "to": "Prototype", "type": "realization"},
+    {"from": "ConcretePrototype2", "to": "Prototype", "type": "realization"},
+    {"from": "PrototypeRegistry", "to": "Prototype", "type": "aggregation", "label": "items"},
+    {"from": "Client", "to": "Prototype", "type": "dependency", "label": "clones"},
+    {"from": "Client", "to": "PrototypeRegistry", "type": "association", "label": "uses"}
+  ]
+}

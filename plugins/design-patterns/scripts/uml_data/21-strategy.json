@@ -1,0 +1,43 @@
+{
+  "title": "Strategy",
+  "intent": "Define a family of algorithms, encapsulate each one, and make them interchangeable so the algorithm can vary independently from the clients that use it.",
+  "classes": [
+    {
+      "name": "Context",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "strategy", "type": "Strategy"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "setStrategy", "params": [{"name": "s", "type": "Strategy"}], "returns": null},
+        {"vis": "+", "name": "execute", "params": [{"name": "data", "type": "Data"}], "returns": "Result"}
+      ]
+    },
+    {
+      "name": "Strategy",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "algorithm", "params": [{"name": "data", "type": "Data"}], "returns": "Result"}
+      ]
+    },
+    {
+      "name": "ConcreteStrategyA",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "algorithm", "params": [{"name": "data", "type": "Data"}], "returns": "Result"}
+      ]
+    },
+    {
+      "name": "ConcreteStrategyB",
+      "kind": "class",
+      "methods": [
+        {"vis": "+", "name": "algorithm", "params": [{"name": "data", "type": "Data"}], "returns": "Result"}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "Context", "to": "Strategy", "type": "aggregation", "label": "strategy"},
+    {"from": "ConcreteStrategyA", "to": "Strategy", "type": "realization"},
+    {"from": "ConcreteStrategyB", "to": "Strategy", "type": "realization"}
+  ]
+}

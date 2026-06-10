@@ -1,0 +1,54 @@
+{
+  "title": "Builder",
+  "intent": "Separate the construction of a complex object from its representation so the same construction process can create different representations.",
+  "classes": [
+    {
+      "name": "Builder",
+      "kind": "interface",
+      "methods": [
+        {"vis": "+", "name": "reset", "params": [], "returns": null},
+        {"vis": "+", "name": "buildStepA", "params": [], "returns": null},
+        {"vis": "+", "name": "buildStepB", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "ConcreteBuilder",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "product", "type": "Product"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "reset", "params": [], "returns": null},
+        {"vis": "+", "name": "buildStepA", "params": [], "returns": null},
+        {"vis": "+", "name": "buildStepB", "params": [], "returns": null},
+        {"vis": "+", "name": "getResult", "params": [], "returns": "Product"}
+      ]
+    },
+    {
+      "name": "Director",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "builder", "type": "Builder"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "setBuilder", "params": [{"name": "b", "type": "Builder"}], "returns": null},
+        {"vis": "+", "name": "construct", "params": [], "returns": null}
+      ]
+    },
+    {
+      "name": "Product",
+      "kind": "class",
+      "attributes": [
+        {"vis": "-", "name": "parts", "type": "List<Part>"}
+      ],
+      "methods": [
+        {"vis": "+", "name": "add", "params": [{"name": "part", "type": "Part"}], "returns": null}
+      ]
+    }
+  ],
+  "relations": [
+    {"from": "ConcreteBuilder", "to": "Builder", "type": "realization"},
+    {"from": "Director", "to": "Builder", "type": "aggregation", "label": "builder"},
+    {"from": "ConcreteBuilder", "to": "Product", "type": "dependency", "label": "creates"}
+  ]
+}
