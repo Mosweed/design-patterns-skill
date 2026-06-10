@@ -14,7 +14,7 @@ The version lives in the `metadata.version` field of
 `plugins/design-patterns/SKILL.md`. The release workflow refuses to publish a
 tag that doesn't match it.
 
-## [Unreleased]
+## [1.1.0] — 2026-06-10
 
 ### Added
 - Three Claude Code subagents shipped with the plugin: `design-patterns`
@@ -22,19 +22,33 @@ tag that doesn't match it.
   diagrams for a pattern or a codebase), and `design-patterns-refactorer`
   (applies a pattern refactor, with write access and a test-first workflow).
 - `scripts/uml.py` + `scripts/uml_data/` — a UML builder that renders each of
-  the 23 patterns' canonical class diagram as Mermaid, PlantUML, or an editable
-  draw.io (`.drawio`) file (`uml.py <slug> -f drawio`, `--all`, `--list`).
+  the 23 patterns' canonical class diagram as Mermaid, PlantUML, an editable
+  draw.io (`.drawio`) file, or a StarUML (`.mdj`) file that opens straight into
+  StarUML with a laid-out class diagram (`uml.py <slug> -f drawio|staruml`,
+  `--all`, `--list`). `-o/--out FILE` writes the diagram as UTF-8 (no BOM) so
+  `.drawio`/`.mdj` files survive PowerShell, where `>` would emit UTF-16.
 - `scripts/scan_patterns.py` — scans a codebase for pattern signals and reports
   candidate implementations with file:line (`--json` for tooling); the audit
   workflow and the UML agent use it.
 - SKILL.md "Bundled scripts" section wiring the scanner and UML builder into the
   audit and diagram workflows.
+- `scripts/test_uml.py` — a dependency-free test suite for the UML builder (20
+  checks over all 23 patterns × 4 formats): data-file schema, relation
+  integrity, reference↔`uml_data` coverage, Mermaid/PlantUML/draw.io structure,
+  draw.io XML well-formedness and HTML-label escaping, StarUML `.mdj` validity
+  (unique ids, all `$ref`s resolve, model/diagram coverage), slug
+  round-tripping, and the CLI. Wired into the pre-commit hook and both CI
+  workflows.
 
 ### Changed
 - Repo layout: the plugin now lives at `plugins/design-patterns/` (was
   `design-patterns/` at the repo root), following the standard marketplace
   convention. The skill content, plugin name, and install command are
   unchanged — only paths in the repo moved.
+
+### Fixed
+- `uml.py` draw.io output: abstract/interface boxes now reserve a row for the
+  `«stereotype»` line, so the last member no longer clips.
 
 ## [1.0.0] — 2026-06-10
 

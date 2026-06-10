@@ -1,7 +1,7 @@
 {
   "name": "design-patterns",
   "description": "A complete reference for the 23 Gang of Four design patterns: explain a pattern, choose between patterns, or review and refactor code toward the right one, with idiomatic examples in 8 languages loaded only when needed.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Mosweed"
   },

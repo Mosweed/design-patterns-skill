@@ -5,7 +5,7 @@ compatibility: "Works on Claude.ai, Claude Code, and the API. No MCP or network 
 license: MIT
 metadata:
   author: Mosweed
-  version: 1.0.0
+  version: 1.1.0
   category: software-engineering
   tags: [design-patterns, gof, code-review, refactoring]
 ---
@@ -187,7 +187,7 @@ they're deterministic and save you from reinventing the work.
 
 | Script | What it does | Example |
 |---|---|---|
-| `uml.py` | Render a pattern's canonical UML class diagram as Mermaid, PlantUML, or draw.io | `python scripts/uml.py observer`, `… -f drawio`, `… --all` |
+| `uml.py` | Render a pattern's canonical UML class diagram as Mermaid, PlantUML, draw.io, or StarUML (`.mdj`) | `python scripts/uml.py observer`, `… -f drawio`, `… -f staruml`, `… --all` |
 | `scan_patterns.py` | Scan a codebase for pattern signals, report candidates (file:line); `--json` for tooling | `python scripts/scan_patterns.py src/ --json` |
 | `validate_skill.py` | Completeness/consistency check of this skill (for contributors) | `python scripts/validate_skill.py` |
 

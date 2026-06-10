@@ -20,6 +20,8 @@ jobs:
           python-version: "3.x"
       - name: Validate skill
         run: python3 plugins/design-patterns/scripts/validate_skill.py
+      - name: Run UML builder tests
+        run: python3 plugins/design-patterns/scripts/test_uml.py
       - name: Check tag matches SKILL.md version
         run: |
           version=$(grep -oP 'version:\s*\K[0-9.]+' plugins/design-patterns/SKILL.md | head -1)

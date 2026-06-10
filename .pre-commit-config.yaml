@@ -7,3 +7,9 @@ repos:
         language: system
         pass_filenames: false
         files: ^plugins/design-patterns/
+      - id: test-design-patterns-uml
+        name: Test design-patterns UML builder
+        entry: python3 plugins/design-patterns/scripts/test_uml.py
+        language: system
+        pass_filenames: false
+        files: ^plugins/design-patterns/scripts/(uml|test_uml)\.py$|^plugins/design-patterns/scripts/uml_data/
