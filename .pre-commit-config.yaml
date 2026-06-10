@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: validate-design-patterns-skill
         name: Validate design-patterns skill
-        entry: python3 design-patterns/scripts/validate_skill.py
+        entry: python3 plugins/design-patterns/scripts/validate_skill.py
         language: system
         pass_filenames: false
-        files: ^design-patterns/
+        files: ^plugins/design-patterns/

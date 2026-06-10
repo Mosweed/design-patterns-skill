@@ -14,4 +14,4 @@ jobs:
         with:
           python-version: "3.x"
       - name: Run skill validator
-        run: python3 design-patterns/scripts/validate_skill.py
+        run: python3 plugins/design-patterns/scripts/validate_skill.py

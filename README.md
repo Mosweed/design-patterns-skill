@@ -23,10 +23,11 @@ only when needed instead of dumped into every conversation.
 ## Install
 
 ### Claude.ai
-1. Download or clone this repo.
-2. Zip the `design-patterns/` folder.
-3. In Claude.ai: **Settings → Capabilities → Skills → Upload skill**, select the zip.
-4. Toggle the skill on.
+1. Download the `design-patterns-vX.Y.Z.zip` from the
+   [latest release](https://github.com/Mosweed/design-patterns-skill/releases),
+   or clone this repo and zip the `plugins/design-patterns/` folder yourself.
+2. In Claude.ai: **Settings → Capabilities → Skills → Upload skill**, select the zip.
+3. Toggle the skill on.
 
 ### Claude Code (plugin marketplace — recommended)
 This repo doubles as a [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces),
@@ -49,14 +50,14 @@ Update later with `/plugin marketplace update mosweed-plugins`, and remove with
 `claude plugin …` from a normal shell.
 
 ### Claude Code (manual copy)
-Prefer not to use a marketplace? Copy the `design-patterns/` folder into a skills directory:
+Prefer not to use a marketplace? Copy the `plugins/design-patterns/` folder into a skills directory:
 
 ```bash
 # Personal — available in all your projects
-cp -r design-patterns ~/.claude/skills/
+cp -r plugins/design-patterns ~/.claude/skills/
 
 # Or project-scoped — committed with a repo, shared with your team
-cp -r design-patterns .claude/skills/
+cp -r plugins/design-patterns .claude/skills/
 ```
 
 Restart Claude Code if the skills directory didn't already exist.
@@ -74,7 +75,7 @@ cp agents/design-patterns.agent.md .github/agents/
 
 Then select **Design Patterns Mentor** from the agent dropdown in Copilot Chat.
 The agent is self-contained, but if it can see this repo's
-`design-patterns/references/`, it will use those files as its source of truth.
+`plugins/design-patterns/references/`, it will use those files as its source of truth.
 
 ## What it does
 
@@ -95,29 +96,30 @@ forcing one.
 
 ```
 .claude-plugin/
-  marketplace.json        # marketplace catalog (lists the design-patterns plugin)
-design-patterns/          # the skill AND the plugin (this is the uploadable unit)
-  .claude-plugin/
-    plugin.json           # plugin manifest (skill discovered via "skills": ["./"])
-  SKILL.md                # instructions + frontmatter
-  references/             # one file per pattern, grouped by category
-  scripts/
-    validate_skill.py     # completeness & consistency checker
+  marketplace.json          # marketplace catalog (lists the design-patterns plugin)
+plugins/
+  design-patterns/          # the skill AND the plugin (this is the uploadable unit)
+    .claude-plugin/
+      plugin.json           # plugin manifest (skill discovered via "skills": ["./"])
+    SKILL.md                # instructions + frontmatter
+    references/             # one file per pattern, grouped by category
+    scripts/
+      validate_skill.py     # completeness & consistency checker
 agents/
-  design-patterns.agent.md # GitHub Copilot custom agent (same workflow)
-evals/                    # benchmark prompts + fixtures (not shipped in the plugin)
-README.md                 # this file (for humans — NOT inside the skill)
-CHANGELOG.md              # version history
-CONTRIBUTING.md           # how to contribute
-AGENTS.md                 # guidance for AI agents working on the repo
+  design-patterns.agent.md  # GitHub Copilot custom agent (same workflow)
+evals/                      # benchmark prompts + fixtures (not shipped in the plugin)
+README.md                   # this file (for humans — NOT inside the skill)
+CHANGELOG.md                # version history
+CONTRIBUTING.md             # how to contribute
+AGENTS.md                   # guidance for AI agents working on the repo
 LICENSE
-.github/                  # CI + release workflows, issue/PR templates
-.pre-commit-config.yaml   # optional: runs the validator before each commit
+.github/                    # CI + release workflows, issue/PR templates
+.pre-commit-config.yaml     # optional: runs the validator before each commit
 ```
 
-The same `design-patterns/` folder serves three distribution channels: a Claude
-Code / Claude.ai **skill** (its `SKILL.md`), a Claude Code **plugin** (via the
-nested `.claude-plugin/plugin.json`), and a manual zip. The repo root is the
+The same `plugins/design-patterns/` folder serves three distribution channels: a
+Claude Code / Claude.ai **skill** (its `SKILL.md`), a Claude Code **plugin** (via
+the nested `.claude-plugin/plugin.json`), and a manual zip. The repo root is the
 **marketplace** that lists the plugin.
 
 The skill folder deliberately contains no `README.md` — skill documentation
@@ -129,7 +131,7 @@ Validate completeness and consistency (all 23 files present, every language
 section present, balanced code fences, Sources section present):
 
 ```bash
-python3 design-patterns/scripts/validate_skill.py
+python3 plugins/design-patterns/scripts/validate_skill.py
 ```
 
 To run it automatically before each commit, install

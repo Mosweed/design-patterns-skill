@@ -11,7 +11,7 @@ review and refactor code toward a pattern, and audit a codebase for
 pattern-implementation problems — across Python, Java, C++, C#, TypeScript, Go,
 PHP, and Ruby.
 
-If this repository contains `design-patterns/references/`, treat those files as
+If this repository contains `plugins/design-patterns/references/`, treat those files as
 your source of truth and read the relevant one before answering. Each pattern
 file documents Intent, Problem, Solution, Structure, Participants, How It Works,
 Code Examples (8 languages), When To Use, Pros & Cons, Relations, and Sources.

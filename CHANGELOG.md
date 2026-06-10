@@ -11,10 +11,16 @@ versions follow [Semantic Versioning](https://semver.org/):
 - **patch** — corrections and clarifications to existing content
 
 The version lives in the `metadata.version` field of
-`design-patterns/SKILL.md`. The release workflow refuses to publish a tag that
-doesn't match it.
+`plugins/design-patterns/SKILL.md`. The release workflow refuses to publish a
+tag that doesn't match it.
 
 ## [Unreleased]
+
+### Changed
+- Repo layout: the plugin now lives at `plugins/design-patterns/` (was
+  `design-patterns/` at the repo root), following the standard marketplace
+  convention. The skill content, plugin name, and install command are
+  unchanged — only paths in the repo moved.
 
 ## [1.0.0] — 2026-06-10
 

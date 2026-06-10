@@ -6,18 +6,21 @@ out and what a good contribution looks like.
 ## Repository layout
 
 ```
-design-patterns/          # the skill — the uploadable unit
-  SKILL.md                # instructions + frontmatter
-  references/             # one .md file per pattern, grouped by category
-    CREATIONAL/  STRUCTURAL/  BEHAVIORAL/
-  scripts/validate_skill.py
-README.md  LICENSE  CONTRIBUTING.md  AGENTS.md
-.github/                  # CI workflow and issue/PR templates
+.claude-plugin/marketplace.json   # marketplace catalog (lists the plugin)
+plugins/
+  design-patterns/        # the skill + plugin — the uploadable unit
+    .claude-plugin/plugin.json
+    SKILL.md              # instructions + frontmatter
+    references/           # one .md file per pattern, grouped by category
+      CREATIONAL/  STRUCTURAL/  BEHAVIORAL/
+    scripts/validate_skill.py
+README.md  LICENSE  CONTRIBUTING.md  AGENTS.md  CHANGELOG.md
+.github/                  # CI + release workflows, issue/PR templates
 ```
 
 ## Ground rules
 
-- The `design-patterns/` folder is what gets uploaded to Claude. Keep it
+- The `plugins/design-patterns/` folder is what gets uploaded to Claude. Keep it
   self-contained. **Do not** add a `README.md` inside it — skill docs live in
   `SKILL.md`. The repo-level README is for human visitors only.
 - `SKILL.md` must be named exactly that (case-sensitive), and the frontmatter
@@ -46,7 +49,7 @@ If you add a pattern file, register it in the `Pattern → file` table in
 Run the validator — CI runs the same check and will block a failing PR:
 
 ```bash
-python3 design-patterns/scripts/validate_skill.py
+python3 plugins/design-patterns/scripts/validate_skill.py
 ```
 
 Optionally install the pre-commit hook so it runs automatically:
