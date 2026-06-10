@@ -17,6 +17,11 @@ doesn't match it.
 ## [Unreleased]
 
 ### Added
+- Plugin + marketplace distribution: `.claude-plugin/marketplace.json` at the
+  repo root lists the `design-patterns` plugin, and `design-patterns/.claude-plugin/plugin.json`
+  makes the existing skill folder installable via
+  `/plugin install design-patterns@mosweed-plugins`. The skill, manual-copy, and
+  zip workflows are unchanged.
 - `references/pattern-confusions.md`: the 11 classic mix-ups (Strategy vs
   State, the four wrappers, the creational trio, …) with comparison tables and
   a tell-tale question each, so comparison answers no longer require loading

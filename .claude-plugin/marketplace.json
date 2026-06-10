@@ -1,0 +1,16 @@
+{
+  "name": "mosweed-plugins",
+  "owner": {
+    "name": "Mosweed"
+  },
+  "description": "Software-engineering plugins by Mosweed. Currently: a Gang of Four design-patterns reference.",
+  "plugins": [
+    {
+      "name": "design-patterns",
+      "source": "./design-patterns",
+      "description": "Explain, compare, review, and refactor toward the 23 GoF design patterns, with idiomatic examples in Python, Java, C++, C#, TypeScript, Go, PHP, and Ruby.",
+      "category": "software-engineering",
+      "tags": ["design-patterns", "gof", "code-review", "refactoring"]
+    }
+  ]
+}

@@ -21,6 +21,14 @@ the repo for humans and agents.
   security restriction (frontmatter is injected into Claude's system prompt).
 - Do not put secrets, emails, or tokens in `SKILL.md` frontmatter; it is
   published publicly.
+- The repo ships as a plugin marketplace. Keep `.claude-plugin/marketplace.json`
+  (repo root) and `design-patterns/.claude-plugin/plugin.json` in place. The
+  plugin loads the skill via `"skills": ["./"]`, so the plugin root is the same
+  `design-patterns/` folder — do not move `SKILL.md` out of it. Validate both
+  manifests with `claude plugin validate .` and `claude plugin validate ./design-patterns`.
+- Plugin version lives in `design-patterns/.claude-plugin/plugin.json` and should
+  track the `metadata.version` in `SKILL.md`. Do not also set `version` in the
+  marketplace entry — `plugin.json` wins silently and a second copy only drifts.
 
 ## When you change anything under `design-patterns/`
 

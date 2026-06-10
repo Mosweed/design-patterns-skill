@@ -29,8 +29,29 @@ only when needed instead of dumped into every conversation.
 3. In Claude.ai: **Settings → Capabilities → Skills → Upload skill**, select the zip.
 4. Toggle the skill on.
 
-### Claude Code
-Copy the `design-patterns/` folder into a skills directory:
+### Claude Code (plugin marketplace — recommended)
+This repo doubles as a [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces),
+so you can install it once and get automatic updates instead of copying files by hand.
+
+```bash
+# Replace OWNER/REPO with this repo once it's on GitHub
+/plugin marketplace add OWNER/REPO
+/plugin install design-patterns@mosweed-plugins
+```
+
+To try it straight from a local clone before it's pushed anywhere:
+
+```bash
+/plugin marketplace add ./design-patterns-skill-repo
+/plugin install design-patterns@mosweed-plugins
+```
+
+Update later with `/plugin marketplace update mosweed-plugins`, and remove with
+`/plugin uninstall design-patterns@mosweed-plugins`. The same commands work as
+`claude plugin …` from a normal shell.
+
+### Claude Code (manual copy)
+Prefer not to use a marketplace? Copy the `design-patterns/` folder into a skills directory:
 
 ```bash
 # Personal — available in all your projects
@@ -75,20 +96,31 @@ forcing one.
 ## Repository layout
 
 ```
-design-patterns/          # the skill (this is the uploadable unit)
+.claude-plugin/
+  marketplace.json        # marketplace catalog (lists the design-patterns plugin)
+design-patterns/          # the skill AND the plugin (this is the uploadable unit)
+  .claude-plugin/
+    plugin.json           # plugin manifest (skill discovered via "skills": ["./"])
   SKILL.md                # instructions + frontmatter
   references/             # one file per pattern, grouped by category
   scripts/
     validate_skill.py     # completeness & consistency checker
 agents/
   design-patterns.agent.md # GitHub Copilot custom agent (same workflow)
+evals/                    # benchmark prompts + fixtures (not shipped in the plugin)
 README.md                 # this file (for humans — NOT inside the skill)
+CHANGELOG.md              # version history
 CONTRIBUTING.md           # how to contribute
 AGENTS.md                 # guidance for AI agents working on the repo
 LICENSE
-.github/                  # CI workflow + issue/PR templates
+.github/                  # CI + release workflows, issue/PR templates
 .pre-commit-config.yaml   # optional: runs the validator before each commit
 ```
+
+The same `design-patterns/` folder serves three distribution channels: a Claude
+Code / Claude.ai **skill** (its `SKILL.md`), a Claude Code **plugin** (via the
+nested `.claude-plugin/plugin.json`), and a manual zip. The repo root is the
+**marketplace** that lists the plugin.
 
 The skill folder deliberately contains no `README.md` — skill documentation
 lives in `SKILL.md`, and this repo-level README is for human visitors.
