@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: validate-design-patterns-skill
+        name: Validate design-patterns skill
+        entry: python3 design-patterns/scripts/validate_skill.py
+        language: system
+        pass_filenames: false
+        files: ^design-patterns/

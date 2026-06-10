@@ -1,0 +1,50 @@
+name: Pattern correction
+description: Report an error or improvement for a specific pattern file
+labels: [correction]
+body:
+  - type: dropdown
+    id: pattern
+    attributes:
+      label: Pattern
+      options:
+        - Factory Method
+        - Abstract Factory
+        - Builder
+        - Prototype
+        - Singleton
+        - Adapter
+        - Bridge
+        - Composite
+        - Decorator
+        - Facade
+        - Flyweight
+        - Proxy
+        - Chain of Responsibility
+        - Command
+        - Interpreter
+        - Iterator
+        - Mediator
+        - Memento
+        - Observer
+        - State
+        - Strategy
+        - Template Method
+        - Visitor
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Language (if the issue is in a code example)
+      placeholder: e.g. Go, Python
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: Describe the error or improvement. Quote the relevant part.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix

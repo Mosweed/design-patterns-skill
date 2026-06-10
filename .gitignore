@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local databases / tool state — never commit
+*.db
+ruvector.db
+
+# Packaged skill zips (built by the release workflow, not committed)
+*.zip
+*.skill
+
+# Skill-testing workspaces
+*-workspace/

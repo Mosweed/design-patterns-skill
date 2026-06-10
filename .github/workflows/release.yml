@@ -1,0 +1,36 @@
+name: Release skill
+
+# Pushing a tag like v1.1.0 validates the skill, zips the design-patterns/
+# folder, and attaches the zip to a GitHub Release — so installing on
+# Claude.ai is a single download instead of clone-and-zip.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate skill
+        run: python3 design-patterns/scripts/validate_skill.py
+      - name: Check tag matches SKILL.md version
+        run: |
+          version=$(grep -oP 'version:\s*\K[0-9.]+' design-patterns/SKILL.md)
+          if [ "v$version" != "${{ github.ref_name }}" ]; then
+            echo "Tag ${{ github.ref_name }} != SKILL.md version v$version"
+            exit 1
+          fi
+      - name: Package skill
+        run: zip -r design-patterns-${{ github.ref_name }}.zip design-patterns
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: design-patterns-${{ github.ref_name }}.zip
+          generate_release_notes: true

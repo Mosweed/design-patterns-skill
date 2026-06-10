@@ -1,0 +1,28 @@
+name: Bug report
+description: Report a problem with the skill (triggering, structure, the validator, etc.)
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where
+      options:
+        - Claude.ai
+        - Claude Code
+        - API
+        - Validator / CI
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include the prompt you used, if relevant.
