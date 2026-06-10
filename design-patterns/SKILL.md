@@ -214,6 +214,12 @@ silently fixing it.
 | Template Method | `references/BEHAVIORAL/22-template-method.md` |
 | Visitor | `references/BEHAVIORAL/23-visitor.md` |
 
+### Cross-cutting references
+| Topic | File | When to read it |
+|---|---|---|
+| Pattern confusions | `references/pattern-confusions.md` | The user asks "X or Y?" or mixes two patterns up. Answer comparisons from this one file instead of loading multiple full pattern files; open a full file only if implementation detail is needed. |
+| Modern alternatives | `references/modern-alternatives.md` | Judging whether code is an idiomatic variant (lambdas instead of Strategy classes, generators instead of Iterator, events instead of Observer), or advising that a full pattern hierarchy would be over-engineering. |
+
 ## Quick selection guide
 
 - Decoupling object creation from client code → Factory Method (one product),

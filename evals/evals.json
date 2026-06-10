@@ -1,0 +1,26 @@
+{
+  "skill_name": "design-patterns",
+  "evals": [
+    {
+      "id": 0,
+      "name": "explain-observer-go",
+      "prompt": "Explain the Observer pattern in Go. I'm fairly new to Go, keep it practical.",
+      "expected_output": "Intent in one sentence, when to use it, minimal structure, ONE idiomatic Go example (channels/interfaces, not a Java translation), common pitfalls, related patterns. Should not paste examples in other languages.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "strategy-or-state",
+      "prompt": "I'm building an order processing module. An order goes from 'new' to 'paid' to 'shipped' to 'delivered', and what the cancel() and update() methods are allowed to do depends on where the order is in that flow. Right now it's a big switch statement. Should I use the Strategy pattern or the State pattern here?",
+      "expected_output": "A comparison table followed by a single clear recommendation (State, because behavior changes as a result of internal transitions, not client choice), with reasoning. Not both patterns implemented, not a hedge.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "review-broken-singleton",
+      "prompt": "Is this a correct Singleton? Review it for me.",
+      "expected_output": "A findings table (file:line, finding type, why it matters, fix) that catches at least: (1) the race condition - no lock around instance creation, (2) __init__ re-runs on every Config() call and resets state, (3) the class remains directly constructible so 'singleton' is not enforced. Should label finding types (correctness/robustness/deviation) and not rewrite unrelated logic.",
+      "files": ["evals/fixtures/broken_singleton.py"]
+    }
+  ]
+}
