@@ -5,8 +5,8 @@
   "author": {
     "name": "Mosweed"
   },
-  "homepage": "https://github.com/OWNER/REPO",
-  "repository": "https://github.com/OWNER/REPO",
+  "homepage": "https://github.com/Mosweed/design-patterns-skill",
+  "repository": "https://github.com/Mosweed/design-patterns-skill",
   "license": "MIT",
   "keywords": ["design-patterns", "gof", "code-review", "refactoring", "software-engineering"],
   "skills": ["./"]

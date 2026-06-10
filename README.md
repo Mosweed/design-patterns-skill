@@ -1,7 +1,6 @@
 # Design Patterns Skill for Claude
 
-<!-- After pushing to GitHub, replace OWNER/REPO with the actual path -->
-[![Validate skill](https://github.com/OWNER/REPO/actions/workflows/validate.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/validate.yml)
+[![Validate skill](https://github.com/Mosweed/design-patterns-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/Mosweed/design-patterns-skill/actions/workflows/validate.yml)
 
 A Claude [Skill](https://code.claude.com/docs/en/skills) that turns Claude into
 a reliable reference for all 23 Gang of Four design patterns. Ask about a
@@ -34,15 +33,14 @@ This repo doubles as a [plugin marketplace](https://code.claude.com/docs/en/plug
 so you can install it once and get automatic updates instead of copying files by hand.
 
 ```bash
-# Replace OWNER/REPO with this repo once it's on GitHub
-/plugin marketplace add OWNER/REPO
+/plugin marketplace add Mosweed/design-patterns-skill
 /plugin install design-patterns@mosweed-plugins
 ```
 
 To try it straight from a local clone before it's pushed anywhere:
 
 ```bash
-/plugin marketplace add ./design-patterns-skill-repo
+/plugin marketplace add ./design-patterns-skill
 /plugin install design-patterns@mosweed-plugins
 ```
 
